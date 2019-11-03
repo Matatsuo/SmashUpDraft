@@ -4,10 +4,13 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - SmashUpDraft</title>
+
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/jquery-confirm.min.css" />
 </head>
 <body class="d-flex flex-column h-100">
-    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow">
         <div class="container">
             <a class="navbar-brand" asp-area="" asp-page="/Index">SmashUpDraft</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
@@ -17,17 +20,42 @@
             <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
                 <ul class="navbar-nav flex-grow-1">
                     <li class="nav-item">
-                        <a class="nav-link" asp-area="" asp-page="/Index">Home</a>
+                        <a class="nav-link" asp-area="" asp-page="/Index">Randomizer</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" asp-area="" asp-page="/Privacy">Privacy</a>
+                        <a class="nav-link" asp-area="" asp-page="/Draft">Snake Draft</a>
                     </li>
                 </ul>
+            </div>
+            <div class="btn-group float-right">
+                <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Quick-select Expansions
+                </button>
+                <div class="dropdown-menu dropdown-menu-right">
+                    <button class="dropdown-item" type="button" rel="qs-item" data-exp="all">Toggle All</button>
+                    <button class="dropdown-item" type="button" rel="qs-item" data-exp="cs">Core Set</button>
+                    <button class="dropdown-item" type="button" rel="qs-item" data-exp="al">Awesome Level 9000</button>
+                    <button class="dropdown-item" type="button" rel="qs-item" data-exp="oc">The Obligatory Cthulhu Set</button>
+                    <button class="dropdown-item" type="button" rel="qs-item" data-exp="sf">Science Fiction Double Feature</button>
+                    <button class="dropdown-item" type="button" rel="qs-item" data-exp="ms">Monster Smash</button>
+                    <button class="dropdown-item" type="button" rel="qs-item" data-exp="pp">Pretty Pretty</button>
+                    <button class="dropdown-item" type="button" rel="qs-item" data-exp="mk">Munchkin</button>
+                    <button class="dropdown-item" type="button" rel="qs-item" data-exp="yf">It's Your Fault</button>
+                    <button class="dropdown-item" type="button" rel="qs-item" data-exp="cd">Cease and Desist</button>
+                    <button class="dropdown-item" type="button" rel="qs-item" data-exp="ww">What Were We Thinking</button>
+                    <button class="dropdown-item" type="button" rel="qs-item" data-exp="bj">Big In Japan</button>
+                    <button class="dropdown-item" type="button" rel="qs-item" data-exp="se">That '70s Expansion</button>
+                    <button class="dropdown-item" type="button" rel="qs-item" data-exp="op">Opps, You Did It Again</button>
+                    <button class="dropdown-item" type="button" rel="qs-item" data-exp="wt1">World Tour: International Incident</button>
+                    <button class="dropdown-item" type="button" rel="qs-item" data-exp="wt2">World Tour: Culture Shock</button>
+                    <button class="dropdown-item" type="button" rel="qs-item" data-exp="sp">Sheep and Penguins</button>
+                    <button class="dropdown-item" type="button" rel="qs-item" data-exp="bg">The Bigger Geekier Box</button>
+                </div>
             </div>
         </div>
     </nav>
 
-    <main role="main" class="flex-shrink-0 mb-3">
+    <main role="main" class="flex-shrink-0 mb-3 container">
         @RenderBody()
     </main>
 
@@ -40,6 +68,7 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/js/jquery-confirm.min.js"></script>
 
     @RenderSection("Scripts", required: false)
 </body>

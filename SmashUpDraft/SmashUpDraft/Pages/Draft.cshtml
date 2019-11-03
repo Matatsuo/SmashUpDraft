@@ -1,0 +1,271 @@
+﻿@page
+@model SmashUpDraft.Pages.DraftModel
+@{
+    ViewData["Title"] = "Draft";
+}
+@section Scripts{
+    <script src="@Url.Content("~/js/Draft.js")"></script>
+}
+
+<div id="current-selector-title" class="sticky card player-1-color d-none">
+    <div class="card-body">Player <span id="active_player">1</span> choose your faction:</div>
+</div>
+
+<div id="options" class="card mt-3">
+    <div class="card-header"><span class="btn-align">Options</span> <button id="startdraft-btn" class="btn btn-primary float-right">Start Draft</button></div>
+    <div class="text-center row py-3">
+        <div class="col-12">
+            <div class="form-inline">
+                <div class="form-group">
+                    <label for="players">Players: </label>
+                    <input id="players" type="number" min="2" value="2" class="form-control mx-sm-2" />
+                </div>
+                <div class="form-group">
+                    <label for="factions">Factions (per player): </label>
+                    <input id="factions" type="number" min="2" value="2" class="form-control mx-sm-2" />
+                </div>
+                <div class="form-group">
+                    <label for="prebans">Pre-emptive Bans: </label>
+                    <input id="prebans" type="number" min="0" value="0" class="form-control mx-sm-2" />
+                </div>
+                <div class="form-group">
+                    <label for="bans">Bans (per player): </label>
+                    <input id="bans" type="number" min="0" value="0" class="form-control mx-sm-2" />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row py-3">
+    <div id="random-selection" class="col-12">
+        <div class="row">
+            <div id="player-1" class="d-none col-xl-3 col-lg-4 col-sm-6 pb-4">
+                <div class="card">
+                    <div id="p1-title" class="card-header text-center player-1-color">Player 1</div>
+                    <div class="row card-body" style="min-height:140px;"></div>
+                </div>
+            </div>
+            <div id="player-2" class="d-none col-xl-3 col-lg-4 col-sm-6 pb-4">
+                <div class="card">
+                    <div id="p2-title" class="card-header text-center player-2-color">Player 2</div>
+                    <div class="row card-body" style="min-height:140px;"></div>
+                </div>
+            </div>
+            <div id="player-3" class="d-none col-xl-3 col-lg-4 col-sm-6 pb-4">
+                <div class="card">
+                    <div id="p3-title" class="card-header text-center player-3-color">Player 3</div>
+                    <div class="row">
+                        <div class="img img1 col"></div><div class="img img2 col"></div>
+                    </div>
+                </div>
+            </div>
+            <div id="player-4" class="d-none col-xl-3 col-lg-4 col-sm-6 pb-4">
+                <div class="card">
+                    <div id="p4-title" class="card-header text-center player-4-color">Player 4</div>
+                    <div class="row">
+                        <div class="img img1 col"></div><div class="img img2 col"></div>
+                    </div>
+                </div>
+            </div>
+            <div id="player-5" class="d-none col-xl-3 col-lg-4 col-sm-6 pb-4">
+                <div class="card">
+                    <div id="p1-title" class="card-header text-center player-5-color">Player 5</div>
+                    <div class="row">
+                        <div class="img img1 col"></div><div class="img img2 col"></div>
+                    </div>
+                </div>
+            </div>
+            <div id="player-6" class="d-none col-xl-3 col-lg-4 col-sm-6 pb-4">
+                <div class="card">
+                    <div id="p2-title" class="card-header text-center player-6-color">Player 6</div>
+                    <div class="row">
+                        <div class="img img1 col"></div><div class="img img2 col"></div>
+                    </div>
+                </div>
+            </div>
+            <div id="player-7" class="d-none col-xl-3 col-lg-4 col-sm-6 pb-4">
+                <div class="card">
+                    <div id="p3-title" class="card-header text-center player-7-color">Player 7</div>
+                    <div class="row">
+                        <div class="img img1 col"></div><div class="img img2 col"></div>
+                    </div>
+                </div>
+            </div>
+            <div id="player-8" class="d-none col-xl-3 col-lg-4 col-sm-6 pb-4">
+                <div class="card">
+                    <div id="p4-title" class="card-header text-center player-8-color">Player 8</div>
+                    <div class="row">
+                        <div class="img img1 col"></div><div class="img img2 col"></div>
+                    </div>
+                </div>
+            </div>
+            <div id="player-9" class="d-none col-xl-3 col-lg-4 col-sm-6 pb-4">
+                <div class="card">
+                    <div id="p1-title" class="card-header text-center player-9-color">Player 9</div>
+                    <div class="row">
+                        <div class="img img1 col"></div><div class="img img2 col"></div>
+                    </div>
+                </div>
+            </div>
+            <div id="player-10" class="d-none col-xl-3 col-lg-4 col-sm-6 pb-4">
+                <div class="card">
+                    <div id="p2-title" class="card-header text-center player-10-color">Player 10</div>
+                    <div class="row">
+                        <div class="img img1 col"></div><div class="img img2 col"></div>
+                    </div>
+                </div>
+            </div>
+            <div id="player-11" class="d-none col-xl-3 col-lg-4 col-sm-6 pb-4">
+                <div class="card">
+                    <div id="p3-title" class="card-header text-center player-11-color">Player 11</div>
+                    <div class="row">
+                        <div class="img img1 col"></div><div class="img img2 col"></div>
+                    </div>
+                </div>
+            </div>
+            <div id="player-12" class="d-none col-xl-3 col-lg-4 col-sm-6 pb-4">
+                <div class="card">
+                    <div id="p4-title" class="card-header text-center player-12-color">Player 12</div>
+                    <div class="row">
+                        <div class="img img1 col"></div><div class="img img2 col"></div>
+                    </div>
+                </div>
+            </div>
+            <div id="player-13" class="d-none col-xl-3 col-lg-4 col-sm-6 pb-4">
+                <div class="card">
+                    <div id="p1-title" class="card-header text-center player-13-color">Player 13</div>
+                    <div class="row">
+                        <div class="img img1 col"></div><div class="img img2 col"></div>
+                    </div>
+                </div>
+            </div>
+            <div id="player-14" class="d-none col-xl-3 col-lg-4 col-sm-6 pb-4">
+                <div class="card">
+                    <div id="p2-title" class="card-header text-center player-14-color">Player 14</div>
+                    <div class="row">
+                        <div class="img img1 col"></div><div class="img img2 col"></div>
+                    </div>
+                </div>
+            </div>
+            <div id="player-15" class="d-none col-xl-3 col-lg-4 col-sm-6 pb-4">
+                <div class="card">
+                    <div id="p3-title" class="card-header text-center player-15-color">Player 15</div>
+                    <div class="row">
+                        <div class="img img1 col"></div><div class="img img2 col"></div>
+                    </div>
+                </div>
+            </div>
+            <div id="player-16" class="d-none col-xl-3 col-lg-4 col-sm-6 pb-4">
+                <div class="card">
+                    <div id="p4-title" class="card-header text-center player-16-color">Player 16</div>
+                    <div class="row">
+                        <div class="img img1 col"></div><div class="img img2 col"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="faction-list" class="text-center row pb-5 mb-4">
+    <div class="col-6 col-md-4 col-lg-3 col-xl-2 py-3" rel="exp-cs"><input type="checkbox" class="img-checkbox alien-bg" id="alien-cb" /><label for="alien-cb"></label><p class="m-0">Aliens</p></div>
+    <div class="col-6 col-md-4 col-lg-3 col-xl-2 py-3" rel="exp-cs"><input type="checkbox" class="img-checkbox dino-bg" id="dino-cb" /><label for="dino-cb"></label><p class="m-0">Dinosaurs</p></div>
+    <div class="col-6 col-md-4 col-lg-3 col-xl-2 py-3" rel="exp-cs"><input type="checkbox" class="img-checkbox ninja-bg" id="ninja-cb" /><label for="ninja-cb"></label><p class="m-0">Ninjas</p></div>
+    <div class="col-6 col-md-4 col-lg-3 col-xl-2 py-3" rel="exp-cs"><input type="checkbox" class="img-checkbox wizard-bg" id="wizard-cb" /><label for="wizard-cb"></label><p class="m-0">Wizards (T)</p></div>
+    <div class="col-6 col-md-4 col-lg-3 col-xl-2 py-3" rel="exp-cs"><input type="checkbox" class="img-checkbox pirate-bg" id="pirate-cb" /><label for="pirate-cb"></label><p class="m-0">Pirates (T)</p></div>
+    <div class="col-6 col-md-4 col-lg-3 col-xl-2 py-3" rel="exp-cs"><input type="checkbox" class="img-checkbox trickster-bg" id="trickster-cb" /><label for="trickster-cb"></label><p class="m-0">Tricksters (T)</p></div>
+    <div class="col-6 col-md-4 col-lg-3 col-xl-2 py-3" rel="exp-cs"><input type="checkbox" class="img-checkbox robot-bg" id="robot-cb" /><label for="robot-cb"></label><p class="m-0">Robots</p></div>
+    <div class="col-6 col-md-4 col-lg-3 col-xl-2 py-3" rel="exp-cs"><input type="checkbox" class="img-checkbox zombie-bg" id="zombie-cb" /><label for="zombie-cb"></label><p class="m-0">Zombies</p></div>
+
+    <div class="col-6 col-md-4 col-lg-3 col-xl-2 py-3" rel="exp-al"><input type="checkbox" class="img-checkbox bearc-bg" id="bearc-cb" /><label for="bearc-cb"></label><p class="m-0">Bear Calvary (T)</p></div>
+    <div class="col-6 col-md-4 col-lg-3 col-xl-2 py-3" rel="exp-al"><input type="checkbox" class="img-checkbox ghosts-bg" id="ghosts-cb" /><label for="ghosts-cb"></label><p class="m-0">Ghosts (T)</p></div>
+    <div class="col-6 col-md-4 col-lg-3 col-xl-2 py-3" rel="exp-al"><input type="checkbox" class="img-checkbox kplants-bg" id="kplants-cb" /><label for="kplants-cb"></label><p class="m-0">Killer Plants</p></div>
+    <div class="col-6 col-md-4 col-lg-3 col-xl-2 py-3" rel="exp-al"><input type="checkbox" class="img-checkbox spunks-bg" id="spunks-cb" /><label for="spunks-cb"></label><p class="m-0">Steampunks</p></div>
+
+    <div class="col-6 col-md-4 col-lg-3 col-xl-2 py-3" rel="exp-oc"><input type="checkbox" class="img-checkbox ethings-bg" id="ethings-cb" /><label for="ethings-cb"></label><p class="m-0">Elder Things</p></div>
+    <div class="col-6 col-md-4 col-lg-3 col-xl-2 py-3" rel="exp-oc"><input type="checkbox" class="img-checkbox innsmouth-bg" id="innsmouth-cb" /><label for="innsmouth-cb"></label><p class="m-0">Innsmouth (T)</p></div>
+    <div class="col-6 col-md-4 col-lg-3 col-xl-2 py-3" rel="exp-oc"><input type="checkbox" class="img-checkbox mcthulhu-bg" id="mcthulhu-cb" /><label for="mcthulhu-cb"></label><p class="m-0">Minions of Cthulhu (T)</p></div>
+    <div class="col-6 col-md-4 col-lg-3 col-xl-2 py-3" rel="exp-oc"><input type="checkbox" class="img-checkbox miska-bg" id="miska-cb" /><label for="miska-cb"></label><p class="m-0">Miskatonic University</p></div>
+
+    <div class="col-6 col-md-4 col-lg-3 col-xl-2 py-3" rel="exp-sf"><input type="checkbox" class="img-checkbox capes-bg" id="capes-cb" /><label for="capes-cb"></label><p class="m-0">Cyborg Apes</p></div>
+    <div class="col-6 col-md-4 col-lg-3 col-xl-2 py-3" rel="exp-sf"><input type="checkbox" class="img-checkbox shape-bg" id="shape-cb" /><label for="shape-cb"></label><p class="m-0">Shapshifters</p></div>
+    <div class="col-6 col-md-4 col-lg-3 col-xl-2 py-3" rel="exp-sf"><input type="checkbox" class="img-checkbox spies-bg" id="spies-cb" /><label for="spies-cb"></label><p class="m-0">Super Spies (T)</p></div>
+    <div class="col-6 col-md-4 col-lg-3 col-xl-2 py-3" rel="exp-sf"><input type="checkbox" class="img-checkbox time-bg" id="time-cb" /><label for="time-cb"></label><p class="m-0">Time Travelers (T)</p></div>
+
+    <div class="col-6 col-md-4 col-lg-3 col-xl-2 py-3" rel="exp-ms"><input type="checkbox" class="img-checkbox gants-bg" id="gants-cb" /><label for="gants-cb"></label><p class="m-0">Giant Ants (T)</p></div>
+    <div class="col-6 col-md-4 col-lg-3 col-xl-2 py-3" rel="exp-ms"><input type="checkbox" class="img-checkbox msci-bg" id="msci-cb" /><label for="msci-cb"></label><p class="m-0">Mad Scientists</p></div>
+    <div class="col-6 col-md-4 col-lg-3 col-xl-2 py-3" rel="exp-ms"><input type="checkbox" class="img-checkbox vamp-bg" id="vamp-cb" /><label for="vamp-cb"></label><p class="m-0">Vampires (T)</p></div>
+    <div class="col-6 col-md-4 col-lg-3 col-xl-2 py-3" rel="exp-ms"><input type="checkbox" class="img-checkbox were-bg" id="were-cb" /><label for="were-cb"></label><p class="m-0">Werewolves (T)</p></div>
+
+    <div class="col-6 col-md-4 col-lg-3 col-xl-2 py-3" rel="exp-pp"><input type="checkbox" class="img-checkbox fairy-bg" id="fairy-cb" /><label for="fairy-cb"></label><p class="m-0">Fairies (T)</p></div>
+    <div class="col-6 col-md-4 col-lg-3 col-xl-2 py-3" rel="exp-pp"><input type="checkbox" class="img-checkbox kitty-bg" id="kitty-cb" /><label for="kitty-cb"></label><p class="m-0">Kitty Cats</p></div>
+    <div class="col-6 col-md-4 col-lg-3 col-xl-2 py-3" rel="exp-pp"><input type="checkbox" class="img-checkbox princess-bg" id="princess-cb" /><label for="princess-cb"></label><p class="m-0">Princesses</p></div>
+    <div class="col-6 col-md-4 col-lg-3 col-xl-2 py-3" rel="exp-pp"><input type="checkbox" class="img-checkbox horses-bg" id="horses-cb" /><label for="horses-cb"></label><p class="m-0">Mythic Horses</p></div>
+
+    <div class="col-6 col-md-4 col-lg-3 col-xl-2 py-3" rel="exp-mk"><input type="checkbox" class="img-checkbox mages-bg" id="mages-cb" /><label for="mages-cb"></label><p class="m-0">Mages</p></div>
+    <div class="col-6 col-md-4 col-lg-3 col-xl-2 py-3" rel="exp-mk"><input type="checkbox" class="img-checkbox dwarf-bg" id="dwarf-cb" /><label for="dwarf-cb"></label><p class="m-0">Dwarves</p></div>
+    <div class="col-6 col-md-4 col-lg-3 col-xl-2 py-3" rel="exp-mk"><input type="checkbox" class="img-checkbox orc-bg" id="orc-cb" /><label for="orc-cb"></label><p class="m-0">Orcs</p></div>
+    <div class="col-6 col-md-4 col-lg-3 col-xl-2 py-3" rel="exp-mk"><input type="checkbox" class="img-checkbox thief-bg" id="thief-cb" /><label for="thief-cb"></label><p class="m-0">Thieves</p></div>
+    <div class="col-6 col-md-4 col-lg-3 col-xl-2 py-3" rel="exp-mk"><input type="checkbox" class="img-checkbox cleric-bg" id="cleric-cb" /><label for="cleric-cb"></label><p class="m-0">Clerics</p></div>
+    <div class="col-6 col-md-4 col-lg-3 col-xl-2 py-3" rel="exp-mk"><input type="checkbox" class="img-checkbox elf-bg" id="elf-cb" /><label for="elf-cb"></label><p class="m-0">Elves</p></div>
+    <div class="col-6 col-md-4 col-lg-3 col-xl-2 py-3" rel="exp-mk"><input type="checkbox" class="img-checkbox halfling-bg" id="halfling-cb" /><label for="halfling-cb"></label><p class="m-0">Halflings</p></div>
+    <div class="col-6 col-md-4 col-lg-3 col-xl-2 py-3" rel="exp-mk"><input type="checkbox" class="img-checkbox warrior-bg" id="warrior-cb" /><label for="warrior-cb"></label><p class="m-0">Warriors</p></div>
+
+    <div class="col-6 col-md-4 col-lg-3 col-xl-2 py-3" rel="exp-yf"><input type="checkbox" class="img-checkbox dragon-bg" id="dragon-cb" /><label for="dragon-cb"></label><p class="m-0">Dragons</p></div>
+    <div class="col-6 col-md-4 col-lg-3 col-xl-2 py-3" rel="exp-yf"><input type="checkbox" class="img-checkbox shark-bg" id="shark-cb" /><label for="shark-cb"></label><p class="m-0">Sharks</p></div>
+    <div class="col-6 col-md-4 col-lg-3 col-xl-2 py-3" rel="exp-yf"><input type="checkbox" class="img-checkbox torn-bg" id="torn-cb" /><label for="torn-cb"></label><p class="m-0">Tornadoes</p></div>
+    <div class="col-6 col-md-4 col-lg-3 col-xl-2 py-3" rel="exp-yf"><input type="checkbox" class="img-checkbox super-bg" id="super-cb" /><label for="super-cb"></label><p class="m-0">Superheroes</p></div>
+    <div class="col-6 col-md-4 col-lg-3 col-xl-2 py-3" rel="exp-yf"><input type="checkbox" class="img-checkbox greek-bg" id="greek-cb" /><label for="greek-cb"></label><p class="m-0">Mythic Greeks</p></div>
+
+    <div class="col-6 col-md-4 col-lg-3 col-xl-2 py-3" rel="exp-cd"><input type="checkbox" class="img-checkbox changer-bg" id="changer-cb" /><label for="changer-cb"></label><p class="m-0">Changerbots (T)</p></div>
+    <div class="col-6 col-md-4 col-lg-3 col-xl-2 py-3" rel="exp-cd"><input type="checkbox" class="img-checkbox roamer-bg" id="roamer-cb" /><label for="roamer-cb"></label><p class="m-0">Star Roamers</p></div>
+    <div class="col-6 col-md-4 col-lg-3 col-xl-2 py-3" rel="exp-cd"><input type="checkbox" class="img-checkbox ignoble-bg" id="ignoble-cb" /><label for="ignoble-cb"></label><p class="m-0">Ignobles (T)</p></div>
+    <div class="col-6 col-md-4 col-lg-3 col-xl-2 py-3" rel="exp-cd"><input type="checkbox" class="img-checkbox aknight-bg" id="aknight-cb" /><label for="aknight-cb"></label><p class="m-0">Astroknights</p></div>
+
+    <div class="col-6 col-md-4 col-lg-3 col-xl-2 py-3" rel="exp-ww"><input type="checkbox" class="img-checkbox explorer-bg" id="explorer-cb" /><label for="explorer-cb"></label><p class="m-0">Explorers (T)</p></div>
+    <div class="col-6 col-md-4 col-lg-3 col-xl-2 py-3" rel="exp-ww"><input type="checkbox" class="img-checkbox granny-bg" id="granny-cb" /><label for="granny-cb"></label><p class="m-0">Grannies</p></div>
+    <div class="col-6 col-md-4 col-lg-3 col-xl-2 py-3" rel="exp-ww"><input type="checkbox" class="img-checkbox teddy-bg" id="teddy-cb" /><label for="teddy-cb"></label><p class="m-0">Teddy Bears</p></div>
+    <div class="col-6 col-md-4 col-lg-3 col-xl-2 py-3" rel="exp-ww"><input type="checkbox" class="img-checkbox rstar-bg" id="rstar-cb" /><label for="rstar-cb"></label><p class="m-0">Rock Stars</p></div>
+
+    <div class="col-6 col-md-4 col-lg-3 col-xl-2 py-3" rel="exp-bj"><input type="checkbox" class="img-checkbox itty-bg" id="itty-cb" /><label for="itty-cb"></label><p class="m-0">Itty Critters (T)</p></div>
+    <div class="col-6 col-md-4 col-lg-3 col-xl-2 py-3" rel="exp-bj"><input type="checkbox" class="img-checkbox kaiju-bg" id="kaiju-cb" /><label for="kaiju-cb"></label><p class="m-0">Kaiju (T)</p></div>
+    <div class="col-6 col-md-4 col-lg-3 col-xl-2 py-3" rel="exp-bj"><input type="checkbox" class="img-checkbox mgirl-bg" id="mgirl-cb" /><label for="mgirl-cb"></label><p class="m-0">Magical Girls (T)</p></div>
+    <div class="col-6 col-md-4 col-lg-3 col-xl-2 py-3" rel="exp-bj"><input type="checkbox" class="img-checkbox mtroop-bg" id="mtroop-cb" /><label for="mtroop-cb"></label><p class="m-0">Mega Troopers (T)</p></div>
+
+    <div class="col-6 col-md-4 col-lg-3 col-xl-2 py-3" rel="exp-se"><input type="checkbox" class="img-checkbox disco-bg" id="disco-cb" /><label for="disco-cb"></label><p class="m-0">Disco Dancers</p></div>
+    <div class="col-6 col-md-4 col-lg-3 col-xl-2 py-3" rel="exp-se"><input type="checkbox" class="img-checkbox kung-bg" id="kung-cb" /><label for="kung-cb"></label><p class="m-0">Kung Fu Fighters</p></div>
+    <div class="col-6 col-md-4 col-lg-3 col-xl-2 py-3" rel="exp-se"><input type="checkbox" class="img-checkbox truck-bg" id="truck-cb" /><label for="truck-cb"></label><p class="m-0">Truckers</p></div>
+    <div class="col-6 col-md-4 col-lg-3 col-xl-2 py-3" rel="exp-se"><input type="checkbox" class="img-checkbox vigil-bg" id="vigil-cb" /><label for="vigil-cb"></label><p class="m-0">Vigilantes</p></div>
+
+    <div class="col-6 col-md-4 col-lg-3 col-xl-2 py-3" rel="exp-op"><input type="checkbox" class="img-checkbox egypt-bg" id="egypt-cb" /><label for="egypt-cb"></label><p class="m-0">Ancient Egyptians</p></div>
+    <div class="col-6 col-md-4 col-lg-3 col-xl-2 py-3" rel="exp-op"><input type="checkbox" class="img-checkbox cboy-bg" id="cboy-cb" /><label for="cboy-cb"></label><p class="m-0">Cowboys</p></div>
+    <div class="col-6 col-md-4 col-lg-3 col-xl-2 py-3" rel="exp-op"><input type="checkbox" class="img-checkbox samu-bg" id="samu-cb" /><label for="samu-cb"></label><p class="m-0">Samurai</p></div>
+    <div class="col-6 col-md-4 col-lg-3 col-xl-2 py-3" rel="exp-op"><input type="checkbox" class="img-checkbox viking-bg" id="viking-cb" /><label for="viking-cb"></label><p class="m-0">Vikings</p></div>
+
+    <div class="col-6 col-md-4 col-lg-3 col-xl-2 py-3" rel="exp-wt1"><input type="checkbox" class="img-checkbox lucha-bg" id="lucha-cb" /><label for="lucha-cb"></label><p class="m-0">Luchadors</p></div>
+    <div class="col-6 col-md-4 col-lg-3 col-xl-2 py-3" rel="exp-wt1"><input type="checkbox" class="img-checkbox mount-bg" id="mount-cb" /><label for="mount-cb"></label><p class="m-0">Mounties</p></div>
+    <div class="col-6 col-md-4 col-lg-3 col-xl-2 py-3" rel="exp-wt1"><input type="checkbox" class="img-checkbox musk-bg" id="musk-cb" /><label for="musk-cb"></label><p class="m-0">Musketeers</p></div>
+    <div class="col-6 col-md-4 col-lg-3 col-xl-2 py-3" rel="exp-wt1"><input type="checkbox" class="img-checkbox sumo-bg" id="sumo-cb" /><label for="sumo-cb"></label><p class="m-0">Sumo Wrestlers</p></div>
+
+    <div class="col-6 col-md-4 col-lg-3 col-xl-2 py-3" rel="exp-wt2"><input type="checkbox" class="img-checkbox anansi-bg" id="anansi-cb" /><label for="anansi-cb"></label><p class="m-0">Anansi Tribes</p></div>
+    <div class="col-6 col-md-4 col-lg-3 col-xl-2 py-3" rel="exp-wt2"><input type="checkbox" class="img-checkbox inca-bg" id="inca-cb" /><label for="inca-cb"></label><p class="m-0">Ancient Incas</p></div>
+    <div class="col-6 col-md-4 col-lg-3 col-xl-2 py-3" rel="exp-wt2"><input type="checkbox" class="img-checkbox grimm-bg" id="grimm-cb" /><label for="grimm-cb"></label><p class="m-0">Grimms' Fairy Tales</p></div>
+    <div class="col-6 col-md-4 col-lg-3 col-xl-2 py-3" rel="exp-wt2"><input type="checkbox" class="img-checkbox russ-bg" id="russ-cb" /><label for="russ-cb"></label><p class="m-0">Russian Fairy Tales</p></div>
+    <div class="col-6 col-md-4 col-lg-3 col-xl-2 py-3" rel="exp-wt2"><input type="checkbox" class="img-checkbox poly-bg" id="poly-cb" /><label for="poly-cb"></label><p class="m-0">Polynesian Voyagers</p></div>
+
+    <div class="col-6 col-md-4 col-lg-3 col-xl-2 py-3" rel="exp-sp"><input type="checkbox" class="img-checkbox peng-bg" id="peng-cb" /><label for="peng-cb"></label><p class="m-0">Penguins (T)</p></div>
+    <div class="col-6 col-md-4 col-lg-3 col-xl-2 py-3" rel="exp-sp"><input type="checkbox" class="img-checkbox sheep-bg" id="sheep-cb" /><label for="sheep-cb"></label><p class="m-0">Sheep</p></div>
+    <div class="col-6 col-md-4 col-lg-3 col-xl-2 py-3" rel="exp-bg"><input type="checkbox" class="img-checkbox suas-bg" id="suas-cb" /><label for="suas-cb"></label><p class="m-0">Smash Up All Stars</p></div>
+    <div class="col-6 col-md-4 col-lg-3 col-xl-2 py-3" rel="exp-bg"><input type="checkbox" class="img-checkbox geeks-bg" id="geeks-cb" /><label for="geeks-cb"></label><p class="m-0">Geeks</p></div>
+</div>
+
+<div id="draft-list" class="pb-5 mb-4 d-none">
+    <div class="card">
+        <div class="card-header">Available Factions</div>
+        <div class="card-body row text-center">
+        </div>
+    </div>
+</div>
+
+<div id="repick-div"><button class="form-control btn btn-primary">Repick</button></div>

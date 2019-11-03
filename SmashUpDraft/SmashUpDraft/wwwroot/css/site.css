@@ -1,71 +1,415 @@
-﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
-for details on configuring this project to bundle and minify static web assets. */
-
-a.navbar-brand {
-  white-space: normal;
-  text-align: center;
-  word-break: break-all;
-}
-
-/* Provide sufficient contrast against white background */
-a {
-  color: #0366d6;
-}
-
-.btn-primary {
-  color: #fff;
-  background-color: #1b6ec2;
-  border-color: #1861ac;
-}
-
-.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
-  color: #fff;
-  background-color: #1b6ec2;
-  border-color: #1861ac;
-}
-
-/* Sticky footer styles
+﻿/* Img checkbox styles
 -------------------------------------------------- */
-html {
-  font-size: 14px;
-}
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+.img-checkbox {
+    display: none;
 }
 
-.border-top {
-  border-top: 1px solid #e5e5e5;
-}
-.border-bottom {
-  border-bottom: 1px solid #e5e5e5;
+.alien-bg + label {
+    background: url('/img/Aliens.png') no-repeat;
 }
 
-.box-shadow {
-  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+.dino-bg + label {
+    background: url('/img/Dinosaurs.png') no-repeat;
 }
 
-button.accept-policy {
-  font-size: 1rem;
-  line-height: inherit;
+.pirate-bg + label {
+    background: url('/img/Pirates.png') no-repeat;
 }
 
-/* Sticky footer styles
--------------------------------------------------- */
-html {
-  position: relative;
-  min-height: 100%;
+.robot-bg + label {
+    background: url('/img/Robots.png') no-repeat;
 }
 
-body {
-  /* Margin bottom by footer height */
-  margin-bottom: 60px;
+.zombie-bg + label {
+    background: url('/img/Zombies.png') no-repeat;
 }
-.footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  white-space: nowrap;
-  line-height: 60px; /* Vertically center the text there */
+
+.trickster-bg + label {
+    background: url('/img/Tricksters.png') no-repeat;
+}
+
+.wizard-bg + label {
+    background: url('/img/Wizards.png') no-repeat;
+}
+
+.ninja-bg + label {
+    background: url('/img/Ninjas.png') no-repeat;
+}
+
+.spunks-bg + label {
+    background: url('/img/Steampunk.png') no-repeat;
+}
+
+.bearc-bg + label {
+    background: url('/img/Bear_Cavalry.png') no-repeat;
+}
+
+.ghosts-bg + label {
+    background: url('/img/Ghosts.png') no-repeat;
+}
+
+.kplants-bg + label {
+    background: url('/img/Killer_Plants.png') no-repeat;
+}
+
+.ethings-bg + label {
+    background: url('/img/Elder_Things.png') no-repeat;
+}
+
+.innsmouth-bg + label {
+    background: url('/img/Innsmouth.png') no-repeat;
+}
+
+.miska-bg + label {
+    background: url('/img/Miskatonic_University-0.png') no-repeat;
+}
+
+.mcthulhu-bg + label {
+    background: url('/img/Minions_of_Cthulhu.png') no-repeat;
+}
+
+.capes-bg + label {
+    background: url('/img/Cyborg_Apes.png') no-repeat;
+}
+
+.shape-bg + label {
+    background: url('/img/Shapeshifters.png') no-repeat;
+}
+
+.spies-bg + label {
+    background: url('/img/Super_Spies.png') no-repeat;
+}
+
+.time-bg + label {
+    background: url('/img/Time_Travelers.png') no-repeat;
+}
+
+.princess-bg + label {
+    background: url('/img/Princesses.png') no-repeat;
+}
+
+.horses-bg + label {
+    background: url('/img/Mythic_Horses.png') no-repeat;
+}
+
+.kitty-bg + label {
+    background: url('/img/Kitty_Cats.png') no-repeat;
+}
+
+.fairy-bg + label {
+    background: url('/img/Fairies.png') no-repeat;
+}
+
+.vamp-bg + label {
+    background: url('/img/Vampires.png') no-repeat;
+}
+
+.gants-bg + label {
+    background: url('/img/Giant_Ants-0.png') no-repeat;
+}
+
+.were-bg + label {
+    background: url('/img/Werewolves.png') no-repeat;
+}
+
+.msci-bg + label {
+    background: url('/img/Mad_Scientists.png') no-repeat;
+}
+
+.mages-bg + label {
+    background: url('/img/Mages.png') no-repeat;
+}
+
+.dwarf-bg + label {
+    background: url('/img/Dwarves.png') no-repeat;
+}
+
+.warrior-bg + label {
+    background: url('/img/Warriors.png') no-repeat;
+}
+
+.orc-bg + label {
+    background: url('/img/Orcs-0.png') no-repeat;
+}
+
+.thief-bg + label {
+    background: url('/img/Thieves.png') no-repeat;
+}
+
+.elf-bg + label {
+    background: url('/img/Elves.png') no-repeat;
+}
+
+.halfling-bg + label {
+    background: url('/img/Halflings.png') no-repeat;
+}
+
+.cleric-bg + label {
+    background: url('/img/Clerics.png') no-repeat;
+}
+
+.dragon-bg + label {
+    background: url('/img/Dragons.png') no-repeat;
+}
+
+.shark-bg + label {
+    background: url('/img/Sharks.png') no-repeat;
+}
+
+.torn-bg + label {
+    background: url('/img/Tornados-0.png') no-repeat;
+}
+
+.super-bg + label {
+    background: url('/img/Superheroes.png') no-repeat;
+}
+
+.greek-bg + label {
+    background: url('/img/Mythic_Greeks-0.png') no-repeat;
+}
+
+.changer-bg + label {
+    background: url('/img/Changerbots.png') no-repeat;
+}
+
+.roamer-bg + label {
+    background: url('/img/Star_Roamers.png') no-repeat;
+}
+
+.aknight-bg + label {
+    background: url('/img/Astro_Knights.png') no-repeat;
+}
+
+.ignoble-bg + label {
+    background: url('/img/Ignobles.png') no-repeat;
+}
+
+.explorer-bg + label {
+    background: url('/img/Explorers.png') no-repeat;
+}
+
+.granny-bg + label {
+    background: url('/img/Grannies.png') no-repeat;
+}
+
+.teddy-bg + label {
+    background: url('/img/Teddy_Bears.png') no-repeat;
+}
+
+.rstar-bg + label {
+    background: url('/img/Rock_Stars.png') no-repeat;
+}
+
+.itty-bg + label {
+    background: url('/img/Itty_Critters.png') no-repeat;
+}
+
+.mtroop-bg + label {
+    background: url('/img/Mega_Troopers.png') no-repeat;
+}
+
+.kaiju-bg + label {
+    background: url('/img/Kaiju-0.png') no-repeat;
+}
+
+.mgirl-bg + label {
+    background: url('/img/Magical_Girls.png') no-repeat;
+}
+
+.disco-bg + label {
+    background: url('/img/Disco.png') no-repeat;
+}
+
+.kung-bg + label {
+    background: url('/img/Kung_Fu.png') no-repeat;
+}
+
+.truck-bg + label {
+    background: url('/img/Trucker.png') no-repeat;
+}
+
+.vigil-bg + label {
+    background: url('/img/Vigilante.png') no-repeat;
+}
+
+.egypt-bg + label {
+    background: url('/img/Ancient_Egyptians_logo.png') no-repeat;
+}
+
+.cboy-bg + label {
+    background: url('/img/Cowboys_logo.png') no-repeat;
+}
+
+.samu-bg + label {
+    background: url('/img/Samurai_logo.png') no-repeat;
+}
+
+.viking-bg + label {
+    background: url('/img/Vikings_logo.png') no-repeat;
+}
+
+.lucha-bg + label {
+    background: url('/img/Luchadors_logo.png') no-repeat;
+}
+
+.sumo-bg + label {
+    background: url('/img/Sumo_Wrestlers_logo.png') no-repeat;
+}
+
+.mount-bg + label {
+    background: url('/img/Mounties_logo.png') no-repeat;
+}
+
+.musk-bg + label {
+    background: url('/img/Musketeers_logo.png') no-repeat;
+}
+
+.anansi-bg + label {
+    background: url('/img/Anansi_Tales_logo.png') no-repeat;
+}
+
+.russ-bg + label {
+    background: url('/img/Russian_Fairy_Tales_logo.png') no-repeat;
+}
+
+.grimm-bg + label {
+    background: url('/img/Grimm\'s_Fairy_Tales_logo.png') no-repeat;
+}
+
+.inca-bg + label {
+    background: url('/img/Ancient_Incas_logo.png') no-repeat;
+}
+
+.poly-bg + label {
+    background: url('/img/Polynesian_Voyagers_logo.png') no-repeat;
+}
+
+.peng-bg + label {
+    background: url('/img/Penguins_logo_2.png') no-repeat;
+}
+
+.sheep-bg + label {
+    background: url('/img/Sheep.png') no-repeat;
+}
+
+.suas-bg + label {
+    background: url('/img/Smash_Up_All_Stars_logo.png') no-repeat;
+}
+
+.geeks-bg + label {
+    background: url('/img/Geeks.png') no-repeat;
+}
+
+.img-checkbox + label {
+    background-size: auto 100px;
+    width: 100%;
+    background-position: center;
+    margin-bottom: 0;
+    height: 100px;
+    opacity: 0.5;
+}
+
+div[id^="player-"] .img {
+    background-size: auto 100px;
+    width: 100%;
+    background-position: center;
+    margin-bottom: 0;
+    height: 100px;
+}
+
+.btn-align {
+    padding-top: .375rem;
+    line-height: 1.5;
+    display: inline-block;
+}
+
+.img-checkbox:checked + label {
+    opacity: 1;
+}
+
+.player-1-color {
+    color:white;
+    background-color: #E6194B;
+}
+
+.player-2-color {
+    color:white;
+    background-color: #3cb44b;
+}
+
+.player-3-color {
+    color:black;
+    background-color: #ffe119;
+}
+
+.player-4-color {
+    color:white;
+    background-color: #4363d8;
+}
+
+.player-5-color {
+    color:white;
+    background-color: #f58231;
+}
+
+.player-6-color {
+    color:black;
+    background-color: #42d4f4;
+}
+
+.player-7-color {
+    color:white;
+    background-color: #f032e6;
+}
+
+.player-8-color {
+    color:black;
+    background-color: #fabebe;
+}
+
+.player-9-color {
+    color:white;
+    background-color: #469990;
+}
+
+.player-10-color {
+    color:black;
+    background-color: #e6beff;
+}
+
+.player-11-color {
+    color:white;
+    background-color: #9A6324;
+}
+
+.player-12-color {
+    color:black;
+    background-color: #fffac8;
+}
+
+.player-13-color {
+    color:white;
+    background-color: #800000;
+}
+
+.player-14-color {
+    color:black;
+    background-color: #aaffc3;
+}
+
+.player-15-color {
+    color:white;
+    background-color: #000075;
+}
+
+.player-16-color {
+    color:white;
+    background-color: #a9a9a9;
+}
+
+div.sticky {
+    position: -webkit-sticky; /* Safari */
+    position: sticky;
+    top: 0;
+    z-index: 999;
 }
