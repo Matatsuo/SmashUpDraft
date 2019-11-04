@@ -1,32 +1,6 @@
 ﻿$(document).ready(function () {
-    $('[rel=qs-item]').on('click', QSItemClick);
     $('#rd-btn').on('click', RandomizeDraft);
 });
-
-function QSItemClick(e) {
-    e.stopPropagation();
-    if ($(e.target).closest('button').data('exp') == 'all') {
-        if ($('input.img-checkbox:not(:checked)').length > 0) {
-            $('input.img-checkbox').each(function (k, v) {
-                $(v).prop('checked', true);
-            });
-        } else {
-            $('input.img-checkbox').each(function (k, v) {
-                $(v).prop('checked', false);
-            });
-        }
-    } else {
-        if ($('[rel=exp-' + $(e.target).closest('button').data('exp') + '] input[type="checkbox"]:not(:checked)').length > 0) {
-            $('[rel=exp-' + $(e.target).closest('button').data('exp') + '] input[type="checkbox"]').each(function (k, v) {
-                $(v).prop('checked', true);
-            });
-        } else {
-            $('[rel=exp-' + $(e.target).closest('button').data('exp') + '] input[type="checkbox"]').each(function (k, v) {
-                $(v).prop('checked', false);
-            });
-        }
-    }
-}
 
 function RandomizeDraft(e) {
     var players = $('input[name="players"]:checked').val();

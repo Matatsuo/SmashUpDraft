@@ -4,36 +4,9 @@ var max_turns = null;
 var turn_count = 0;
 
 $(document).ready(function () {
-    //$('div[id^="player-"]').removeClass('d-none');
-    $('[rel=qs-item]').on('click', QSItemClick);
     $('#startdraft-btn').on('click', StartDraft);
     $('#repick-div button').on('click', DraftReset);
 });
-
-function QSItemClick(e) {
-    e.stopPropagation();
-    if ($(e.target).closest('button').data('exp') == 'all') {
-        if ($('input.img-checkbox:not(:checked)').length > 0) {
-            $('input.img-checkbox').each(function (k, v) {
-                $(v).prop('checked', true);
-            });
-        } else {
-            $('input.img-checkbox').each(function (k, v) {
-                $(v).prop('checked', false);
-            });
-        }
-    } else {
-        if ($('[rel=exp-' + $(e.target).closest('button').data('exp') + '] input[type="checkbox"]:not(:checked)').length > 0) {
-            $('[rel=exp-' + $(e.target).closest('button').data('exp') + '] input[type="checkbox"]').each(function (k, v) {
-                $(v).prop('checked', true);
-            });
-        } else {
-            $('[rel=exp-' + $(e.target).closest('button').data('exp') + '] input[type="checkbox"]').each(function (k, v) {
-                $(v).prop('checked', false);
-            });
-        }
-    }
-}
 
 function StartDraft(e) {
     var players = parseInt($('#players').val());
