@@ -1,50 +1,25 @@
 ﻿var direction_change = false;
 var direction = '+';
 var max_turns = null;
+var prebans = 0;
 var turn_count = 0;
 
 $(document).ready(function () {
-    //$('div[id^="player-"]').removeClass('d-none');
-    $('[rel=qs-item]').on('click', QSItemClick);
     $('#startdraft-btn').on('click', StartDraft);
     $('#repick-div button').on('click', DraftReset);
 });
-
-function QSItemClick(e) {
-    e.stopPropagation();
-    if ($(e.target).closest('button').data('exp') == 'all') {
-        if ($('input.img-checkbox:not(:checked)').length > 0) {
-            $('input.img-checkbox').each(function (k, v) {
-                $(v).prop('checked', true);
-            });
-        } else {
-            $('input.img-checkbox').each(function (k, v) {
-                $(v).prop('checked', false);
-            });
-        }
-    } else {
-        if ($('[rel=exp-' + $(e.target).closest('button').data('exp') + '] input[type="checkbox"]:not(:checked)').length > 0) {
-            $('[rel=exp-' + $(e.target).closest('button').data('exp') + '] input[type="checkbox"]').each(function (k, v) {
-                $(v).prop('checked', true);
-            });
-        } else {
-            $('[rel=exp-' + $(e.target).closest('button').data('exp') + '] input[type="checkbox"]').each(function (k, v) {
-                $(v).prop('checked', false);
-            });
-        }
-    }
-}
 
 function StartDraft(e) {
     var players = parseInt($('#players').val());
     var selection = $('input.img-checkbox:checked');
     var factions = parseInt($('#factions').val());
+    prebans = parseInt($('#prebans').val()) * players;
     if (players < 2 || players > 16) {
         $.alert({
             title: false,
             content: 'You have not entered a player count greater than 2 and less than 17'
         });
-    } else if (selection.length < (players * 2)) {
+    } else if (selection.length < ((players * factions) + prebans)) {
         $.confirm({
             title: false,
             content: 'There are not enough factions selected ',
@@ -68,10 +43,6 @@ function StartDraft(e) {
         $('#faction-list').addClass('d-none');
         $('#draft-list').removeClass('d-none');
 
-        for (var i = 1; i <= players; i++) {
-            $('#player-' + i).removeClass('d-none');
-        }
-
         selection.each(function (index, item) {
             // put selected factions into the draft pool
             var faction = $(item.closest('div')).clone();
@@ -80,6 +51,15 @@ function StartDraft(e) {
             $(faction.children('label')[0]).on('click', ChooseFaction);
             $('#draft-list .card-body').append(faction);
         });
+
+        if (prebans == 0) {
+            for (var i = 1; i <= players; i++) {
+                $('#player-' + i).removeClass('d-none');
+            }
+            $('#action-description').text('Choose your faction:');
+        } else {
+            $('#action-description').text('Pre-emptive banning:');
+        }
     }
 }
 
@@ -88,19 +68,49 @@ function ChooseFaction(e) {
     var current = parseInt($('#active_player').text());
     var next = current;
 
-    $(e.target).closest('div').addClass('d-none');
-    var img = $('<div>', {
-        'class': 'col-6 img img' + ($('#player-' + current + ' div.card div.row div.img').length + 1),
-        'style': 'background:' + $(e.target).closest('label').css('background')
-    });
-    $('#player-' + current + ' div.card div.row').append(img);
-    turn_count = turn_count + 1;
+    if (prebans > 0) {
+        prebans = prebans - 1;
 
-    if (turn_count == max_turns) {
-        $('#draft-list').addClass('d-none');
-        $('#current-selector-title').addClass('d-none');
-        $('#repick-draft').removeClass('d-none');
-        return;
+        $(e.target).closest('div').addClass('d-none');
+
+        // Reset player 1
+        if (prebans == 0) {
+            direction_change = false;
+            direction = '+';
+
+            $('#active_player').text(1);
+            $('#action-description').text('Choose your faction:');
+            for (var i = 1; i <= 16; i++) {
+                $('#current-selector-title').removeClass('player-' + i + '-color');
+            }
+            $('#current-selector-title').addClass('player-' + 1 + '-color');
+
+            for (var i = 1; i <= players; i++) {
+                $('#player-' + i).removeClass('d-none');
+            }
+
+            return;
+        }
+    } else {
+
+        for (var i = 1; i <= players; i++) {
+            $('#player-' + i).removeClass('d-none');
+        }
+
+        $(e.target).closest('div').addClass('d-none');
+        var img = $('<div>', {
+            'class': 'col-6 img img' + ($('#player-' + current + ' div.card div.row div.img').length + 1),
+            'style': 'background:' + $(e.target).closest('label').css('background')
+        });
+        $('#player-' + current + ' div.card div.row').append(img);
+        turn_count = turn_count + 1;
+
+        if (turn_count == max_turns) {
+            $('#draft-list').addClass('d-none');
+            $('#current-selector-title').addClass('d-none');
+            $('#repick-draft').removeClass('d-none');
+            return;
+        }
     }
 
     if (direction_change) {
@@ -113,7 +123,7 @@ function ChooseFaction(e) {
         next = next - 1;
         if (next == 1) { direction_change = true; }
     }
-    
+
     for (var i = 1; i <= 16; i++) {
         $('#current-selector-title').removeClass('player-' + i + '-color');
     }
@@ -130,6 +140,7 @@ function DraftReset(e) {
     direction = '+';
 
     $('#active_player').text(1);
+    $('#action-description').text('Choose your faction:');
     for (var i = 1; i <= 16; i++) {
         $('#current-selector-title').removeClass('player-' + i + '-color');
         $('#player-' + i + ' div.card div.row').empty();

@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
     <link rel="stylesheet" href="~/css/jquery-confirm.min.css" />
+    <link rel="stylesheet" href="~/css/bootstrap4-toggle.min.css" />
 </head>
 <body class="d-flex flex-column h-100">
     <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow">
@@ -32,24 +33,24 @@
                     Quick-select Expansions
                 </button>
                 <div class="dropdown-menu dropdown-menu-right">
-                    <button class="dropdown-item" type="button" rel="qs-item" data-exp="all">Toggle All</button>
-                    <button class="dropdown-item" type="button" rel="qs-item" data-exp="cs">Core Set</button>
-                    <button class="dropdown-item" type="button" rel="qs-item" data-exp="al">Awesome Level 9000</button>
-                    <button class="dropdown-item" type="button" rel="qs-item" data-exp="oc">The Obligatory Cthulhu Set</button>
-                    <button class="dropdown-item" type="button" rel="qs-item" data-exp="sf">Science Fiction Double Feature</button>
-                    <button class="dropdown-item" type="button" rel="qs-item" data-exp="ms">Monster Smash</button>
-                    <button class="dropdown-item" type="button" rel="qs-item" data-exp="pp">Pretty Pretty</button>
-                    <button class="dropdown-item" type="button" rel="qs-item" data-exp="mk">Munchkin</button>
-                    <button class="dropdown-item" type="button" rel="qs-item" data-exp="yf">It's Your Fault</button>
-                    <button class="dropdown-item" type="button" rel="qs-item" data-exp="cd">Cease and Desist</button>
-                    <button class="dropdown-item" type="button" rel="qs-item" data-exp="ww">What Were We Thinking</button>
-                    <button class="dropdown-item" type="button" rel="qs-item" data-exp="bj">Big In Japan</button>
-                    <button class="dropdown-item" type="button" rel="qs-item" data-exp="se">That '70s Expansion</button>
-                    <button class="dropdown-item" type="button" rel="qs-item" data-exp="op">Opps, You Did It Again</button>
-                    <button class="dropdown-item" type="button" rel="qs-item" data-exp="wt1">World Tour: International Incident</button>
-                    <button class="dropdown-item" type="button" rel="qs-item" data-exp="wt2">World Tour: Culture Shock</button>
-                    <button class="dropdown-item" type="button" rel="qs-item" data-exp="sp">Sheep and Penguins</button>
-                    <button class="dropdown-item" type="button" rel="qs-item" data-exp="bg">The Bigger Geekier Box</button>
+                    <button class="dropdown-item mr-5" type="button" rel="qs-item" data-exp="all">Toggle All <div class="float-right"><input type="checkbox" data-toggle="toggle" data-size="mini" /></div></button>
+                    <button class="dropdown-item" type="button" data-exp="cs" rel="qs-item">Core Set <div class="float-right"><input type="checkbox" data-toggle="toggle" data-size="mini" /></div></button>
+                    <button class="dropdown-item" type="button" data-exp="al" rel="qs-item">Awesome Level 9000 <div class="float-right"><input type="checkbox" data-toggle="toggle" data-size="mini" /></div></button>
+                    <button class="dropdown-item" type="button" data-exp="oc" rel="qs-item">The Obligatory Cthulhu Set <div class="float-right"><input type="checkbox" data-toggle="toggle" data-size="mini" /></div></button>
+                    <button class="dropdown-item" type="button" data-exp="sf" rel="qs-item">Science Fiction Double Feature <div class="float-right"><input type="checkbox" data-toggle="toggle" data-size="mini" /></div></button>
+                    <button class="dropdown-item" type="button" data-exp="ms" rel="qs-item">Monster Smash <div class="float-right"><input type="checkbox" data-toggle="toggle" data-size="mini" /></div></button>
+                    <button class="dropdown-item" type="button" data-exp="pp" rel="qs-item">Pretty Pretty <div class="float-right"><input type="checkbox" data-toggle="toggle" data-size="mini" /></div></button>
+                    <button class="dropdown-item" type="button" data-exp="mk" rel="qs-item">Munchkin <div class="float-right"><input type="checkbox" data-toggle="toggle" data-size="mini" /></div></button>
+                    <button class="dropdown-item" type="button" data-exp="yf" rel="qs-item">It's Your Fault <div class="float-right"><input type="checkbox" data-toggle="toggle" data-size="mini" /></div></button>
+                    <button class="dropdown-item" type="button" data-exp="cd" rel="qs-item">Cease and Desist <div class="float-right"><input type="checkbox" data-toggle="toggle" data-size="mini" /></div></button>
+                    <button class="dropdown-item" type="button" data-exp="ww" rel="qs-item">What Were We Thinking <div class="float-right"><input type="checkbox" data-toggle="toggle" data-size="mini" /></div></button>
+                    <button class="dropdown-item" type="button" data-exp="bj" rel="qs-item">Big In Japan <div class="float-right"><input type="checkbox" data-toggle="toggle" data-size="mini" /></div></button>
+                    <button class="dropdown-item" type="button" data-exp="se" rel="qs-item">That '70s Expansion <div class="float-right"><input type="checkbox" data-toggle="toggle" data-size="mini" /></div></button>
+                    <button class="dropdown-item" type="button" data-exp="op" rel="qs-item">Opps, You Did It Again <div class="float-right"><input type="checkbox" data-toggle="toggle" data-size="mini" /></div></button>
+                    <button class="dropdown-item mr-5" type="button" data-exp="wt1" rel="qs-item">World Tour: International Incident <div class="float-right"><input type="checkbox" data-toggle="toggle" data-size="mini" /></div></button>
+                    <button class="dropdown-item" type="button" data-exp="wt2" rel="qs-item">World Tour: Culture Shock <div class="float-right"><input type="checkbox" data-toggle="toggle" data-size="mini" /></div></button>
+                    <button class="dropdown-item" type="button" data-exp="sp" rel="qs-item">Sheep and Penguins <div class="float-right"><input type="checkbox" data-toggle="toggle" data-size="mini" /></div></button>
+                    <button class="dropdown-item" type="button" data-exp="bg" rel="qs-item">The Bigger Geekier Box <div class="float-right"><input type="checkbox" data-toggle="toggle" data-size="mini" /></div></button>
                 </div>
             </div>
         </div>
@@ -69,6 +70,8 @@
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     <script src="~/js/jquery-confirm.min.js"></script>
+    <script src="~/js/bootstrap4-toggle.min.js"></script>
+    <script src="~/js/global.js"></script>
 
     @RenderSection("Scripts", required: false)
 </body>
