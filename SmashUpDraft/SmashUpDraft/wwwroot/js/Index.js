@@ -5,6 +5,8 @@
 function RandomizeDraft(e) {
     var players = $('input[name="players"]:checked').val();
     var selection = $('input.img-checkbox:checked');
+    var factions = 2;
+    if ($('#select-three').prop('checked')) { factions = 3; }
     if (players == undefined) {
         $.confirm({
             title: false,
@@ -30,7 +32,7 @@ function RandomizeDraft(e) {
                 }
             }
         });
-    } else if (selection.length < (players * 2)) {
+    } else if (selection.length < (players * factions)) {
         $.confirm({
             title: false,
             content: 'There are not enough factions selected ',
@@ -50,7 +52,7 @@ function RandomizeDraft(e) {
         players = parseInt(players);
         selection = shuffle(selection).toArray();
         var data = [];
-        for (var i = 0; i < (players * 2); i++) {
+        for (var i = 0; i < (players * factions); i++) {
             var x = $(selection.pop());
             if ($('#no-repeat').prop('checked')) {
                 $(x).prop('checked', false);
@@ -60,6 +62,7 @@ function RandomizeDraft(e) {
         }
 
         $('div[id^="player-"]').addClass('d-none');
+        $('div[id^="player-"] div.row').empty();
         $('div[id^="player-"] div').removeClass('bg-success');
 
         if ($('#select-first').prop('checked')) {
@@ -69,10 +72,15 @@ function RandomizeDraft(e) {
 
         for (var j = 0; j < players; j++) {
             $('#player-' + (j + 1)).removeClass('d-none');
-            var faction1 = $('label[for="' + data[j] + '-cb"]').css('background');
-            var faction2 = $('label[for="' + data[(j + players)] + '-cb"]').css('background');
-            $('#player-' + (j + 1) + ' div.img1').css('background', faction1);
-            $('#player-' + (j + 1) + ' div.img2').css('background', faction2);
+            for (var k = 0; k < factions; k++) {
+                var faction = $('label[for="' + data[(j + (players * k))] + '-cb"]').css('background');
+                $('#player-' + (j + 1) + ' div.row').append(
+                    $('<div>', {
+                        'class': 'img col',
+                        style: 'background:' + faction
+                    })
+                );
+            }
         }
     }
 }
