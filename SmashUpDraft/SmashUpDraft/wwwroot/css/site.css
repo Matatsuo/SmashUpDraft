@@ -1,4 +1,23 @@
-﻿/* Img checkbox styles
+﻿body {
+    font-size: 0.875rem!important;
+}
+
+@media (min-width: 992px) {
+    .col-lg-8th {
+        -ms-flex: 0 0 12.5%;
+        flex: 0 0 12.5%;
+        max-width: 12.5%;
+    }
+}
+
+@media (min-width: 768px) {
+    .col-md-8th {
+        -ms-flex: 0 0 12.5%;
+        flex: 0 0 12.5%;
+        max-width: 12.5%;
+    }
+}
+/* Img checkbox styles
 -------------------------------------------------- */
 .img-checkbox {
     display: none;
@@ -301,20 +320,20 @@
 }
 
 .img-checkbox + label {
-    background-size: auto 100px;
+    background-size: auto 50px;
     width: 100%;
     background-position: center;
     margin-bottom: 0;
-    height: 100px;
+    height: 50px;
     opacity: 0.5;
 }
 
 div[id^="player-"] .img {
-    background-size: auto 100px;
+    background-size: auto 50px;
     width: 100%;
     background-position: center;
     margin-bottom: 0;
-    height: 100px;
+    height: 50px;
 }
 
 .btn-align {
