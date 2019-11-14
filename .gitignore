@@ -351,5 +351,11 @@ MigrationBackup/
 
 # Ionide (cross platform F# VS Code tools) working folder
 .ionide/
-*.ide-shm
+SmashUpDraft/.vs/SmashUpDraft/v16/Server/sqlite3/storage.ide
+SmashUpDraft/.vs/SmashUpDraft/v16/Server/sqlite3/storage.ide-shm
+SmashUpDraft/.vs/SmashUpDraft/v16/Server/sqlite3/storage.ide-wal
+SmashUpDraft/SmashUpDraft/obj/Debug/netcoreapp3.0/SmashUpDraft.csprojAssemblyReference.cache
+*.cache
 *.ide-wal
+*.ide-shm
+*.ide
