@@ -1,5 +1,13 @@
 ﻿$(document).ready(function () {
     $('#rd-btn').on('click', RandomizeDraft);
+    Options = Cookies.get('RandomOptions');
+    if (Options != undefined) {
+        Options = JSON.parse(Options);
+        $('input[name="players"][value=' + Options.players + ']').prop('checked', true);
+        $('#select-three').prop('checked', Options.three);
+        $('#select-first').prop('checked', Options.highlight);
+        $('#no-repeat').prop('checked', Options.repeats);
+    }
 });
 
 function RandomizeDraft(e) {
@@ -7,6 +15,7 @@ function RandomizeDraft(e) {
     var selection = $('input.img-checkbox:checked');
     var factions = 2;
     if ($('#select-three').prop('checked')) { factions = 3; }
+
     if (players == undefined) {
         $.confirm({
             title: false,
@@ -51,6 +60,15 @@ function RandomizeDraft(e) {
     } else {
         players = parseInt(players);
         selection = shuffle(selection).toArray();
+
+        // Save Options
+        Options = {};
+        Options.players = players;
+        Options.three = $('#select-three').prop('checked');
+        Options.highlight = $('#select-first').prop('checked');
+        Options.repeats = $('#no-repeat').prop('checked');
+        Cookies.set('RandomOptions', JSON.stringify(Options));
+
         var data = [];
         for (var i = 0; i < (players * factions); i++) {
             var x = $(selection.pop());
