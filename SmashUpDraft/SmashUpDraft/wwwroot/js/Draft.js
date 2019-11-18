@@ -5,8 +5,18 @@ var prebans = 0;
 var postbans = 0;
 var turn_count = 0;
 var phase = null;
+var totalbans = 0;
+var step = 0;
 
 $(document).ready(function () {
+    var Options = Cookies.get('DraftOptions');
+    if (Options != undefined) {
+        Options = JSON.parse(Options);
+        $('#players').val(Options.players);
+        $('#factions').val(Options.factions);
+        $('#prebans').val(Options.prebans);
+        $('#bans').val(Options.postbans);
+    }
     $('#startdraft-btn').on('click', StartDraft);
     $('#repick-div button').on('click', DraftReset);
 });
@@ -17,7 +27,17 @@ function StartDraft(e) {
     var selection = $('input.img-checkbox:checked');
     var factions = parseInt($('#factions').val());
     prebans = parseInt($('#prebans').val()) * players;
-    postbans = parseInt($('#bans').val()) * players;
+    postbans = parseInt($('#bans').val());
+    totalbans = postbans * players;
+
+    // Save Options
+    Options = {};
+    Options.players = players;
+    Options.factions = factions;
+    Options.prebans = prebans / players;
+    Options.postbans = postbans;
+    Cookies.set('DraftOptions', JSON.stringify(Options));
+
     if (players < 2 || players > 16) {
         $.alert({
             title: false,
@@ -121,7 +141,8 @@ function ChooseFaction(e) {
                 }
                 $('#current-selector-title').addClass('player-1-color');
                 $('#active_player').text('1');
-                $('#action-description').html('Ban a faction from player <span id="ban-player">2</span>:');
+                step = Math.floor((Math.random() * (players - 1)) + 1);
+                $('#action-description').html('Ban a faction from player <span id="ban-player">' + (step + 1) + '</span>:');
                 phase = 'postbans';
             } else {
                 $('#current-selector-title').addClass('d-none');
@@ -188,12 +209,26 @@ function PostBan(e) {
             'width': '50px'
         }));
 
-        // Change header values
+        totalbans = totalbans - 1;
 
-        postbans = postbans - 1;
+        if ((totalbans % players) == 0) {
+            step = (step % (players - 1)) + 1;
+        }
+
+        // Change header values
+        for (var i = 1; i <= 16; i++) {
+            $('#current-selector-title').removeClass('player-' + i + '-color');
+        }
+
+        banner = (banner % players) + 1;
+        bannee = ((banner + step - 1) % players) + 1;
+
+        $('#ban-player').text(bannee);
+        $('#active_player').text(banner);
+        $('#current-selector-title').addClass('player-' + banner + '-color');
     }
 
-    if (postbans == 0) {
+    if (totalbans == 0) {
         $('#current-selector-title').addClass('d-none');
         $('#repick-draft').removeClass('d-none');
     }
