@@ -2,7 +2,9 @@
 var direction = '+';
 var max_turns = null;
 var prebans = 0;
+var postbans = 0;
 var turn_count = 0;
+var phase = null;
 
 $(document).ready(function () {
     $('#startdraft-btn').on('click', StartDraft);
@@ -10,10 +12,12 @@ $(document).ready(function () {
 });
 
 function StartDraft(e) {
+    phase = 'start';
     var players = parseInt($('#players').val());
     var selection = $('input.img-checkbox:checked');
     var factions = parseInt($('#factions').val());
     prebans = parseInt($('#prebans').val()) * players;
+    postbans = parseInt($('#bans').val()) * players;
     if (players < 2 || players > 16) {
         $.alert({
             title: false,
@@ -57,8 +61,10 @@ function StartDraft(e) {
                 $('#player-' + i).removeClass('d-none');
             }
             $('#action-description').text('Choose your faction:');
+            phase = 'picks';
         } else {
             $('#action-description').text('Pre-emptive banning:');
+            phase = 'prebans';
         }
     }
 }
@@ -75,6 +81,7 @@ function ChooseFaction(e) {
 
         // Reset player 1
         if (prebans == 0) {
+            phase = 'picks';
             direction_change = false;
             direction = '+';
 
@@ -99,16 +106,28 @@ function ChooseFaction(e) {
 
         $(e.target).closest('div').addClass('d-none');
         var img = $('<div>', {
-            'class': 'col-6 img img' + ($('#player-' + current + ' div.card div.row div.img').length + 1),
+            'class': 'text-center col-6 img img' + ($('#player-' + current + ' div.card div.row div.img').length + 1),
             'style': 'background:' + $(e.target).closest('label').css('background')
         });
+        img.on('click', PostBan);
         $('#player-' + current + ' div.card div.row').append(img);
         turn_count = turn_count + 1;
 
         if (turn_count == max_turns) {
             $('#draft-list').addClass('d-none');
-            $('#current-selector-title').addClass('d-none');
-            $('#repick-draft').removeClass('d-none');
+            if (postbans > 0) {
+                for (var i = 1; i <= 16; i++) {
+                    $('#current-selector-title').removeClass('player-' + i + '-color');
+                }
+                $('#current-selector-title').addClass('player-1-color');
+                $('#active_player').text('1');
+                $('#action-description').html('Ban a faction from player <span id="ban-player">2</span>:');
+                phase = 'postbans';
+            } else {
+                $('#current-selector-title').addClass('d-none');
+                $('#repick-draft').removeClass('d-none');
+            }
+            
             return;
         }
     }
@@ -149,5 +168,33 @@ function DraftReset(e) {
 
     for (var i = 1; i <= 16; i++) {
         $('#player-' + i).addClass('d-none');
+    }
+}
+
+function PostBan(e) {
+    if (turn_count != max_turns) { return; } // Check is pick phase over
+    if ($(e.target).closest('div').children('img').length > 0) { return; } // Check is it banned already
+    if (postbans == 0) { return; } // Are there any postbans
+
+    var players = parseInt($('#players').val());
+    var banner = parseInt($('#active_player').text());
+    var bannee = parseInt($('#ban-player').text());
+
+    if ($(e.target).closest('div.card-body').prev('div.card-header').hasClass('player-' + bannee + '-color')) {
+
+        $(e.target).closest('div').append($('<img>', {
+            'src': '/img/circlecross2.png',
+            'height': '50px',
+            'width': '50px'
+        }));
+
+        // Change header values
+
+        postbans = postbans - 1;
+    }
+
+    if (postbans == 0) {
+        $('#current-selector-title').addClass('d-none');
+        $('#repick-draft').removeClass('d-none');
     }
 }
